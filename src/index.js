@@ -1,4 +1,4 @@
-class ScreenStatus {
+export class ScreenStatus {
     constructor(options = {}) {
       this.init(options)
     }
@@ -59,3 +59,4 @@ class ScreenStatus {
       window.removeEventListener('visibilitychange', this.showHandler, false)
     }
   }
+
