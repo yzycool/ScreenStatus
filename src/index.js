@@ -37,15 +37,16 @@ export class ScreenStatus {
       if (!handler || typeof handler !== 'function') return
       this.events[type].push(handler)
       return () => {
-        removeEvents(type, handler)
+        this.removeEvents(type, handler)
       }
     }
     removeEvents(type, handler) {
       if (!handler || typeof handler !== 'function') return
-      handler = this.events[type]
-      _index = handler.indexOf(handler)
+     let  handlerAll = this.events[type]
+     let  _index = handlerAll.indexOf(handler)
       if(_index !== -1){
-            handler.splice(_index,1) 
+        console.log(this.events[type])
+        this.events[type].splice(_index,1) 
       }
     }
     onBlur(handler) {

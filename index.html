@@ -31,7 +31,8 @@
     function handlerError() {
         console.log('error')
     }
-    Screen.onShow(fn1)
+
+    let deleteFn1 = Screen.onShow(fn1)
     Screen.onShow(fn2)
     Screen.onBlur(fn3)
     Screen.onBlur(fn4)
