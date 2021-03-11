@@ -10,15 +10,13 @@ ScreenStatus 支持所有 [符合ES5的] 的浏览器（不支持IE9及以下版
 
 这里展示一个简单的使用案例
 
-#### 打包
+#### 安装
 
-打包出的文件为 dist 文件夹中的 listenScreen.js
+下载后打包出的文件为 dist 文件夹中的 listenScreen.js
 
 ```javascript
 npm run build
 ```
-
-
 
 #### 引入使用
 
@@ -37,10 +35,29 @@ npm run build
     function handlerError() {
         console.log('error')
     }
-    Screen.onShow(fn1)
+	//页面可见时触发fn1，返回一个移除本方法的函数
+    let deleteFn1 = Screen.onShow(fn1)
+    //页面不可见触发fn2
     Screen.onBlur(fn2)
+	//移除fn1
+	deleteFn1()
+	//移除所有方法，并取消监听
+	Screen.destroy()
 </script>
 ```
+
+### 自定义配置
+
+可选配置有
+
+```
+onShow(fn)  //接受一个函数参数，可多次调用，添加多个方法，会在页面可见时调用所有方法
+onBlur(fn)    //接受一个函数参数，可多次调用，添加多个方法，会在页面不可见时调用所有方法
+delect = onShow() || onBlur //onShow和onBlur都会返回一个回调函数，可以销毁当前方法
+destroy()	//销毁所有方法，并且解除监听事件
+```
+
+
 
 ### 添加页面展示时执行函数
 
@@ -97,7 +114,8 @@ let Screen = new ScreenStatus();
   function fn1() {
     document.title = '页面不可见';
   }
-Screen.onBlur(fn1)
+let deleteFn1 =Screen.onBlur(fn1)
+deleteFn1()
 ```
 
 ### 移除全部事件
