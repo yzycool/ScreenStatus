@@ -2,9 +2,9 @@ ScreenStatus.js（发音 /skriːn steɪtəs/ ）插件用于检测用户当前�
 
 ### 浏览器兼容性
 
-ScreenStatus.js 支持所有 符合 ES5 规范 的浏览器（不支持IE9及以下版本） 。
+ScreenStatus.js 支持所有 符合 ES5 规范的浏览器（不支持IE9及以下版本）。
 
-##### ![1615196788758.png](https://cdn.nlark.com/yuque/0/2021/png/2980524/1615360015739-b9e99aa2-d0bc-49f8-8b7b-2b1b138f71c1.png#align=left&display=inline&height=307&margin=%5Bobject%20Object%5D&name=1615196788758.png&originHeight=307&originWidth=1416&size=54065&status=done&style=none&width=1416)
+![1615196788758.png](https://cdn.nlark.com/yuque/0/2021/png/2980524/1615360015739-b9e99aa2-d0bc-49f8-8b7b-2b1b138f71c1.png#align=left&display=inline&height=307&margin=%5Bobject%20Object%5D&name=1615196788758.png&originHeight=307&originWidth=1416&size=54065&status=done&style=none&width=1416)
 
 ### 快速上手
 
@@ -12,18 +12,18 @@ ScreenStatus.js 支持所有 符合 ES5 规范 的浏览器（不支持IE9及以
 
 #### 安装
 
-下载后打包出的文件为 dist 文件夹中的 listenScreen.js。
+下载后打包出的文件为 dist 文件夹中的 ScreenStatus.js。
 
-```javascript
+```bash
 npm run build
 ```
 
 #### 引入使用
 
-```javascript
+```html
 <script src="./listenScreen.js"></script>
 <script>
-    let Screen = new ScreenStatus(handlerError);
+    const Screen = new ScreenStatus(handlerError);
     function fn1() {
         document.title = '页面不可见';
         console.log('123')
@@ -35,13 +35,13 @@ npm run build
     function handlerError() {
         console.log('error')
     }
-	//页面可见时触发fn1，返回一个移除本方法的函数
-    let deleteFn1 = Screen.onShow(fn1)
+    //页面可见时触发fn1，返回一个移除本方法的函数
+    const deleteFn1 = Screen.onShow(fn1)
     //页面不可见触发fn2
     Screen.onBlur(fn2)
-	//移除fn1
+    //移除fn1
     deleteFn1()
-	//移除所有方法，并取消监听
+    //移除所有方法，并取消监听
     Screen.destroy()
 </script>
 ```
@@ -50,10 +50,10 @@ npm run build
 
 | API        | 参数 | 类型     | 说明                                                         | 是否必传 | 默认值 | 返回值           |
 | ---------- | ---- | -------- | ------------------------------------------------------------ | -------- | ------ | ---------------- |
-| onShow(fn) | fn   | function | 接受一个函数参数，可多次调用，添加多个方法，会在页面可见时调用所有方法 | 必传     | 无     | 销毁该方法的回调 |
-| onBlur(fn) | fn   | function | 接受一个函数参数，可多次调用，添加多个方法，会在页面不可见时调用所有方法 | 必传     | 无     | 销毁该方法的回调 |
-| delete     | fn   | function | 销毁当前方法                                                 |          | `无`   | 无               |
-| destroy()  | fn   | function | 销毁所有方法，并且解除监听事件                               |          |        |                  |
+| `onShow(fn)` | fn   | function | 接受一个函数参数，可多次调用，添加多个方法，会在页面可见时调用所有方法。 | 必传     | 无     | 销毁该方法的回调 |
+| `onBlur(fn)` | fn   | function | 接受一个函数参数，可多次调用，添加多个方法，会在页面不可见时调用所有方法。 | 必传     | 无     | 销毁该方法的回调 |
+| `delete`     | fn   | function | 销毁当前方法。                                                 |   无       | 无   | 无               |
+| `destroy()`  | fn   | function | 销毁所有方法，并且解除监听事件。                               |      无    |     无   |       无           |
 
 
 
@@ -62,9 +62,9 @@ npm run build
 ```javascript
 import from 'ScreenStatus'
 let Screen = new ScreenStatus();
-  function fn1() {
-    document.title = '页面可见';
-  }
+function fn1() {
+document.title = '页面可见';
+}
 Screen.onShow(fn1)
 ```
 
@@ -72,10 +72,10 @@ Screen.onShow(fn1)
 
 ```javascript
 import from 'ScreenStatus'
-let Screen = new ScreenStatus();
-  function fn1() {
-    document.title = '页面不可见';
-  }
+const Screen = new ScreenStatus();
+function fn1() {
+document.title = '页面不可见';
+}
 Screen.onBlur(fn1)
 ```
 
@@ -83,7 +83,7 @@ Screen.onBlur(fn1)
 
 ```javascript
 import from 'ScreenStatus'
-  let Screen = new ScreenStatus();
+  const Screen = new ScreenStatus();
   function fn1() {
     document.title = '页面可见';
     console.log('123')
@@ -108,11 +108,11 @@ import from 'ScreenStatus'
 
 ```javascript
 import from 'ScreenStatus'
-let Screen = new ScreenStatus();
-  function fn1() {
-    document.title = '页面不可见';
-  }
-let deleteFn1 =Screen.onBlur(fn1)
+const Screen = new ScreenStatus();
+function fn1() {
+document.title = '页面不可见';
+}
+const deleteFn1 =Screen.onBlur(fn1)
 deleteFn1()
 ```
 
@@ -120,7 +120,7 @@ deleteFn1()
 
 ```javascript
 import from 'ScreenStatus'
-let Screen = new ScreenStatus();
+const Screen = new ScreenStatus();
 Screen.destroy()
 ```
 
@@ -128,7 +128,7 @@ Screen.destroy()
 
 ```javascript
 import from 'ScreenStatus'
- let Screen = new ScreenStatus(handlerError);
+ const Screen = new ScreenStatus(handlerError);
  function handlerError() {
     console.log('error')
 }
