@@ -1,8 +1,8 @@
-ScreenStatus.js（发音 /skriːn steɪtəs/ ）插件用于检测用户当前标签页显示状态，他可以检测到用户当前标签页是否显示，以此得知用户是否离开当前页面。
+ScreenStatus.js（发音 /skriːn steɪtəs/ ）插件用于检测用户当前标签页显示状态，它可以检测到用户当前标签页是否显示，以此得知用户是否离开当前页面。
 
 ### 浏览器兼容性
 
-ScreenStatus.js 支持所有 符合 ES5 规范的浏览器（不支持IE9及以下版本）。
+ScreenStatus.js 支持所有符合 ES5 规范的浏览器（不支持IE9及以下版本）。
 
 
 ![avatar](/src/assets/compatibility.png)
@@ -23,26 +23,26 @@ npm run build
 ```html
 <script src="./ScreenStatus.js"></script>
 <script>
-    const Screen = new ScreenStatus(handlerError);
-    function fn1() {
-        document.title = '页面不可见';
-        console.log('123')
-    }
-     function fn2() {
-        document.title = '页面可见';
-        console.log('结束')
-    }
-    function handlerError() {
-        console.log('error')
-    }
-    //页面可见时触发fn1，返回一个移除本方法的函数
-    const deleteFn1 = Screen.onShow(fn1)
-    //页面不可见触发fn2
-    Screen.onBlur(fn2)
-    //移除fn1
-    deleteFn1()
-    //移除所有方法，并取消监听
-    Screen.destroy()
+const Screen = new ScreenStatus(handlerError);
+function fn1() {
+    document.title = '页面不可见';
+    console.log('123')
+}
+ function fn2() {
+    document.title = '页面可见';
+    console.log('结束')
+}
+function handlerError() {
+    console.log('error')
+}
+//页面可见时触发fn1，返回一个移除本方法的函数
+const deleteFn1 = Screen.onShow(fn1)
+//页面不可见触发fn2
+Screen.onBlur(fn2)
+//移除fn1
+deleteFn1()
+//移除所有方法，并取消监听
+Screen.destroy()
 </script>
 ```
 
@@ -63,7 +63,7 @@ npm run build
 import from 'ScreenStatus'
 let Screen = new ScreenStatus();
 function fn1() {
-document.title = '页面可见';
+    document.title = '页面可见';
 }
 Screen.onShow(fn1)
 ```
@@ -74,7 +74,7 @@ Screen.onShow(fn1)
 import from 'ScreenStatus'
 const Screen = new ScreenStatus();
 function fn1() {
-document.title = '页面不可见';
+    document.title = '页面不可见';
 }
 Screen.onBlur(fn1)
 ```
@@ -83,25 +83,25 @@ Screen.onBlur(fn1)
 
 ```javascript
 import from 'ScreenStatus'
-  const Screen = new ScreenStatus();
-  function fn1() {
+const Screen = new ScreenStatus();
+function fn1() {
     document.title = '页面可见';
     console.log('123')
-  }
-  function fn2() {
+}
+function fn2() {
     console.log('456')
-  }
-  function fn3() {
+}
+function fn3() {
     console.log('789')
-  }
-  function fn4() {
+}
+function fn4() {
     document.title = '页面不可见';
-    console.log('结束')
-  }
-  Screen.onShow(fn1)
-  Screen.onShow(fn2)
-  Screen.onBlur(fn3)
-  Screen.onBlur(fn4)
+console.log('结束')
+}
+Screen.onShow(fn1)
+Screen.onShow(fn2)
+Screen.onBlur(fn3)
+Screen.onBlur(fn4)
 ```
 
 ### 移除指定事件
@@ -110,7 +110,7 @@ import from 'ScreenStatus'
 import from 'ScreenStatus'
 const Screen = new ScreenStatus();
 function fn1() {
-document.title = '页面不可见';
+    document.title = '页面不可见';
 }
 const deleteFn1 =Screen.onBlur(fn1)
 deleteFn1()
