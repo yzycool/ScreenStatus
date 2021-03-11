@@ -1,18 +1,18 @@
-ScreenStatus（发音 /skriːn steɪtəs/ ）插件用于检测用户当前标签页显示状态，他可以检测到用户当前标签页是否显示，以此得知用户是否离开当前页面。
+ScreenStatus.js（发音 /skriːn steɪtəs/ ）插件用于检测用户当前标签页显示状态，他可以检测到用户当前标签页是否显示，以此得知用户是否离开当前页面。
 
 ### 浏览器兼容性
 
-ScreenStatus 支持所有 [符合ES5的] 的浏览器（不支持IE9及以下版本） 
+ScreenStatus.js 支持所有 符合 ES5 规范 的浏览器（不支持IE9及以下版本） 。
 
 ##### ![1615196788758.png](https://cdn.nlark.com/yuque/0/2021/png/2980524/1615360015739-b9e99aa2-d0bc-49f8-8b7b-2b1b138f71c1.png#align=left&display=inline&height=307&margin=%5Bobject%20Object%5D&name=1615196788758.png&originHeight=307&originWidth=1416&size=54065&status=done&style=none&width=1416)
 
 ### 快速上手
 
-这里展示一个简单的使用案例
+这里展示一个简单的使用案例。
 
 #### 安装
 
-下载后打包出的文件为 dist 文件夹中的 listenScreen.js
+下载后打包出的文件为 dist 文件夹中的 listenScreen.js。
 
 ```javascript
 npm run build
@@ -48,14 +48,12 @@ npm run build
 
 ### 自定义配置
 
-可选配置有
-
-```
-onShow(fn)  //接受一个函数参数，可多次调用，添加多个方法，会在页面可见时调用所有方法
-onBlur(fn)    //接受一个函数参数，可多次调用，添加多个方法，会在页面不可见时调用所有方法
-delect = onShow() || onBlur //onShow和onBlur都会返回一个回调函数，可以销毁当前方法
-destroy()	//销毁所有方法，并且解除监听事件
-```
+| API        | 参数 | 类型     | 说明                                                         | 是否必传 | 默认值 | 返回值           |
+| ---------- | ---- | -------- | ------------------------------------------------------------ | -------- | ------ | ---------------- |
+| onShow(fn) | fn   | function | 接受一个函数参数，可多次调用，添加多个方法，会在页面可见时调用所有方法 | 必传     | 无     | 销毁该方法的回调 |
+| onBlur(fn) | fn   | function | 接受一个函数参数，可多次调用，添加多个方法，会在页面不可见时调用所有方法 | 必传     | 无     | 销毁该方法的回调 |
+| delete     | fn   | function | 销毁当前方法                                                 |          | `无`   | 无               |
+| destroy()  | fn   | function | 销毁所有方法，并且解除监听事件                               |          |        |                  |
 
 
 
