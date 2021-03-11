@@ -4,8 +4,8 @@ ScreenStatus.js（发音 /skriːn steɪtəs/ ）插件用于检测用户当前�
 
 ScreenStatus.js 支持所有 符合 ES5 规范的浏览器（不支持IE9及以下版本）。
 
-![1615196788758.png](https://cdn.nlark.com/yuque/0/2021/png/2980524/1615360015739-b9e99aa2-d0bc-49f8-8b7b-2b1b138f71c1.png#align=left&display=inline&height=307&margin=%5Bobject%20Object%5D&name=1615196788758.png&originHeight=307&originWidth=1416&size=54065&status=done&style=none&width=1416)
 
+![avatar](/src/assets/compatibility.png)
 ### 快速上手
 
 这里展示一个简单的使用案例。
