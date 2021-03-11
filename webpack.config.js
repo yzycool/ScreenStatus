@@ -6,7 +6,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         libraryTarget: 'umd',
-        filename: 'listenScreen.js'
+        filename: 'ScreenStatus.js'
     },
 
     devServer: {
