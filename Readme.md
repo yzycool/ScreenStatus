@@ -40,9 +40,9 @@ npm run build
     //页面不可见触发fn2
     Screen.onBlur(fn2)
 	//移除fn1
-	deleteFn1()
+    deleteFn1()
 	//移除所有方法，并取消监听
-	Screen.destroy()
+    Screen.destroy()
 </script>
 ```
 
