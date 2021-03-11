@@ -21,7 +21,7 @@ npm run build
 #### 引入使用
 
 ```html
-<script src="./listenScreen.js"></script>
+<script src="./ScreenStatus.js"></script>
 <script>
     const Screen = new ScreenStatus(handlerError);
     function fn1() {
