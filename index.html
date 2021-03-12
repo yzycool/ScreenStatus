@@ -15,27 +15,30 @@
 <script>
     let Screen = new ScreenStatus(handlerError);
     function fn1() {
-        document.title = '页面不可见';
         console.log('123')
     }
     function fn2() {
+        document.title = '页面不可见';
         console.log('456')
     }
     function fn3() {
+        document.title = '页面可见';
         console.log('789')
     }
     function fn4() {
-        document.title = '页面可见';
         console.log('结束')
     }
     function handlerError() {
         console.log('error')
     }
 
-    let deleteFn1 = Screen.onShow(fn1)
+    // let deleteFn1 = Screen.onShow(fn1)
     Screen.onShow(fn2)
     Screen.onBlur(fn3)
-    Screen.onBlur(fn4)
+    // Screen.onBlur(fn4)
+
+    Screen.exitFullScreenCallback(fn1)
+    Screen.enterFullScreenCallback(fn4)
 
 
 
