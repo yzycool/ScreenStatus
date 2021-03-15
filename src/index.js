@@ -12,50 +12,7 @@ export class ScreenStatus {
     this.enterFullNotify = this.creatNotification('enterFull')
     this.createEvent()
   }
-  listenScreen () {
-    document.addEventListener('visibilitychange', this.listenChange)
-    document.addEventListener('fullscreenchange', this.listenChangeFull)
-  }
-  listenChange = () => {
-    if (document.visibilityState === 'hidden') {
-      this.blurNotification()
-    }
-    if (document.visibilityState === 'visible') {
-      this.focusNotification()
-    }
-  }
-  listenChangeFull = () => {
-    if (document.fullscreenElement !== null) {
-      this.enterFullNotify()
-    } else {
-      this.exitFullNotify()
-    }
-  }
-  destroy () {
-    document.removeEventListener('visibilitychange', this.listenChange)
-    document.removeEventListener('fullscreenchange', this.listenChangeFull)
-  }
-  creatEvents (type, handler) {
-    console.log(type)
-    if (!handler || typeof handler !== 'function') return
-    this.events[type].push(handler)
-    return () => {
-      this.removeEvents(type, handler)
-    }
-  }
-  creatNotification = (type) => {
-    if (type || this.events[type]) {
-      return () => {
-        this.events[type].forEach(fn => {
-          try {
-            fn()
-          } catch (error) {
-            this.handlerError(error)
-          }
-        })
-      }
-    }
-  }
+
   //事件API
   createEvent () {
     const events = ['blur', 'focus', 'exitFull', 'enterFull']
@@ -112,6 +69,50 @@ export class ScreenStatus {
     }
     return false;
   }
-
+  listenScreen () {
+    document.addEventListener('visibilitychange', this.listenChange)
+    document.addEventListener('fullscreenchange', this.listenChangeFull)
+  }
+  listenChange = () => {
+    if (document.visibilityState === 'hidden') {
+      this.blurNotification()
+    }
+    if (document.visibilityState === 'visible') {
+      this.focusNotification()
+    }
+  }
+  listenChangeFull = () => {
+    if (document.fullscreenElement !== null) {
+      this.enterFullNotify()
+    } else {
+      this.exitFullNotify()
+    }
+  }
+  destroy () {
+    this.events = null
+    document.removeEventListener('visibilitychange', this.listenChange)
+    document.removeEventListener('fullscreenchange', this.listenChangeFull)
+  }
+  creatEvents (type, handler) {
+    console.log(type)
+    if (!handler || typeof handler !== 'function') return
+    this.events[type].push(handler)
+    return () => {
+      this.removeEvents(type, handler)
+    }
+  }
+  creatNotification = (type) => {
+    if (type || this.events[type]) {
+      return () => {
+        this.events[type].forEach(fn => {
+          try {
+            fn()
+          } catch (error) {
+            this.handlerError(error)
+          }
+        })
+      }
+    }
+  }
 }
 
