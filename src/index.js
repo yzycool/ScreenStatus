@@ -71,12 +71,9 @@ export class ScreenStatus {
   }
   listenScreen = () => {
     if ('onblur' in window) {
-      window.onblur = () => {
-        this.blurNotification()
-      }
-      window.onfocus = () => {
-        this.focusNotification()
-      }
+      window.addEventListener('blur', this.blurNotification)
+      window.addEventListener('focus', this.focusNotification)
+
     } else {
       document.addEventListener('visibilitychange', this.listenChange)
     }
@@ -100,7 +97,12 @@ export class ScreenStatus {
   }
   destroy () {
     this.events = null
-    document.removeEventListener('visibilitychange', this.listenChange)
+    if ('onblur' in window) {
+      document.removeEventListener('blur', this.blurNotification)
+      document.removeEventListener('focus', this.focusNotification)
+    } else {
+      document.removeEventListener('visibilitychange', this.listenChange)
+    }
     document.removeEventListener('fullscreenchange', this.listenChangeFull)
   }
   creatEvents (type, handler) {
