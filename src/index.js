@@ -3,13 +3,13 @@ export class ScreenStatus {
     this.init(options)
   }
   init (options) {
-    this.listenScreen()
     this.events = { blur: [], focus: [], exitFull: [], enterFull: [] }
     this.handlerError = options.handlerError || console.error;
     this.blurNotification = this.creatNotification('blur')
     this.focusNotification = this.creatNotification('focus')
     this.exitFullNotify = this.creatNotification('exitFull')
     this.enterFullNotify = this.creatNotification('enterFull')
+    this.listenScreen()
     this.createEvent()
   }
 
@@ -69,9 +69,19 @@ export class ScreenStatus {
     }
     return false;
   }
-  listenScreen () {
-    document.addEventListener('visibilitychange', this.listenChange)
+  listenScreen = () => {
+    if ('onblur' in window) {
+      window.onblur = () => {
+        this.blurNotification()
+      }
+      window.onfocus = () => {
+        this.focusNotification()
+      }
+    } else {
+      document.addEventListener('visibilitychange', this.listenChange)
+    }
     document.addEventListener('fullscreenchange', this.listenChangeFull)
+
   }
   listenChange = () => {
     if (document.visibilityState === 'hidden') {
@@ -103,6 +113,7 @@ export class ScreenStatus {
   }
   creatNotification = (type) => {
     if (type || this.events[type]) {
+      console.log('触发事件')
       return () => {
         this.events[type].forEach(fn => {
           try {

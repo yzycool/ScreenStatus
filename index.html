@@ -11,7 +11,7 @@
 <body>
     <button class="btn">打开</button>
 </body>
-<script src="listenScreen.js"></script>
+<script src="./dist/ScreenStatus.js"></script>
 <script>
     let Screen = new ScreenStatus(handlerError);
     function fn1() {
@@ -33,8 +33,8 @@
     }
 
     // let deleteFn1 = Screen.onShow(fn1)
-    Screen.onShow(fn2)
-    Screen.onBlur(fn3)
+    Screen.onShow(fn3)
+    Screen.onBlur(fn2)
     // Screen.onBlur(fn4)
 
     Screen.exitFullScreenCallback(fn1)
